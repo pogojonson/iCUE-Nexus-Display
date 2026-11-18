@@ -14,6 +14,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
+            pkg-config libdbus-1-dev \
             libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
             libxkbcommon-dev libssl-dev
 
@@ -23,7 +24,15 @@ jobs:
       - uses: Swatinem/rust-cache@v2
 
       - name: Test
-        run: cargo test
+        run: |
+          set -o pipefail
+          if ! cargo test 2>&1 | tee test-output.log; then
+            echo "::group::Failure details"
+            grep -E "^error|FAILED|panicked at|test result:|failures:" test-output.log \
+              | tail -40 | sed 's/^/::error::/'
+            echo "::endgroup::"
+            exit 1
+          fi
 
       - name: Build (release)
         run: cargo build --release
