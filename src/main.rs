@@ -1,6 +1,6 @@
 //! iCUE Nexus Display Control — Corsair iCUE Nexus Companion Touch Screen for Linux.
 //!
-//! Pure Rust: no Node.js, no Python. Threads:
+//! Pure Rust. Threads:
 //!   * main/eframe thread — egui UI
 //!   * worker thread — Nexus HID + sensor sampling (`core::worker`)
 //!   * macro manager thread — K100 keyboard (`macro_::manager`)

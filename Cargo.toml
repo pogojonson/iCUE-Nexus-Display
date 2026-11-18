@@ -2,7 +2,7 @@
 name = "icue-nexus-display"
 version = "0.1.0"
 edition = "2021"
-description = "Corsair iCUE Nexus Companion Touch Screen control for Linux — pure Rust, no Node.js"
+description = "Corsair iCUE Nexus Companion Touch Screen control for Linux — pure Rust"
 license = "MIT"
 
 [[bin]]

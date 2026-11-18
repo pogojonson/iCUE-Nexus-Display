@@ -2,8 +2,8 @@
 
 A **pure-Rust** application for controlling the **Corsair iCUE Nexus Companion
 Touch Screen** on Linux. Communicates directly with the display over USB HID —
-no iCUE software, **no Node.js, no Electron, no Python**. Once built, the
-single static binary keeps working regardless of system library/Node updates.
+no iCUE software, **no Electron, no Python**. Once built, the
+single static binary keeps working regardless of system library updates.
 
 This is a full rewrite of the original Electron+React app in
 [`../k100display/`](../k100display) with the same features and the same
@@ -52,7 +52,7 @@ cargo build --release
 # binary: target/release/icue-nexus-display  (~9.5 MB)
 ```
 
-No Node.js, no npm — only the Rust toolchain.
+Only the Rust toolchain is required.
 
 ## Setup
 
