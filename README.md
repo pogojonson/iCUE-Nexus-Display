@@ -1,4 +1,4 @@
-# iCUE Nexus Display Control (Rust)
+# iCUE Nexus Display Control
 
 A **pure-Rust** application for controlling the **Corsair iCUE Nexus Companion
 Touch Screen** on Linux. Communicates directly with the display over USB HID —
