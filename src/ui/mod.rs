@@ -1,0 +1,9 @@
+pub mod editor;
+pub mod gallery;
+pub mod macros_ui;
+pub mod pages;
+pub mod preview;
+pub mod sensors_sel;
+pub mod thresholds_ui;
+pub mod theme;
+pub mod widgets;

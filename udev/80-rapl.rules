@@ -1,0 +1,3 @@
+# Allow regular users to read RAPL energy counters (CPU power monitoring)
+# Install: sudo cp 80-rapl.rules /etc/udev/rules.d/ && sudo udevadm control -R && sudo udevadm trigger
+SUBSYSTEM=="powercap", MODE="0444"

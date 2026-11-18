@@ -1,0 +1,17 @@
+# udev rule for Corsair iCUE Nexus Companion Touch Screen
+# Provides non-root access to the HID device
+#
+# Install:
+#   sudo cp 70-icue-nexus.rules /etc/udev/rules.d/
+#   sudo udevadm control -R && sudo udevadm trigger --action=add --subsystem-match=hidraw
+#   Log out and back in, or reboot
+#
+# MUST sort before 73-seat-late.rules (which turns TAG=="uaccess" into an ACL)
+
+# Nexus display - uses ENV{ID_VENDOR_ID} (set by USB subsystem) since
+# ATTRS{idVendor} doesn't propagate to hidraw child nodes
+# Uses GROUP="input" (not plugdev) because plugdev may not exist on all systems
+SUBSYSTEM=="hidraw", ENV{ID_VENDOR_ID}=="1b1c", ENV{ID_MODEL_ID}=="1b8e", MODE="0666", GROUP="input"
+
+# K100 keyboard (same vendor, different product ID)
+SUBSYSTEM=="hidraw", ENV{ID_VENDOR_ID}=="1b1c", ENV{ID_MODEL_ID}=="1b7c", MODE="0666", GROUP="input"

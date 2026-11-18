@@ -1,0 +1,32 @@
+[package]
+name = "icue-nexus-display"
+version = "0.1.0"
+edition = "2021"
+description = "Corsair iCUE Nexus Companion Touch Screen control for Linux — pure Rust, no Node.js"
+license = "MIT"
+
+[[bin]]
+name = "icue-nexus-display"
+path = "src/main.rs"
+
+[dependencies]
+# NOTE: dropping "wayland" here does NOT disable Wayland — glutin-winit's
+# default features keep winit/wayland compiled in (feature unification).
+# The backend actually used is chosen at runtime in main() by unsetting
+# WAYLAND_DISPLAY: winit's Wayland backend has no set_visible and no
+# window icon, so hide-to-tray + the taskbar icon need XWayland — the
+# same X11 path the original Electron app used.
+eframe = { version = "0.29", default-features = false, features = ["glow", "default_fonts", "x11"] }
+egui = "0.29"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+crossbeam-channel = "0.5"
+chrono = "0.4"
+libc = "0.2"
+ksni = "0.2"
+evdev = "0.13"
+png = "0.17"
+
+[profile.release]
+opt-level = 2
+strip = true
