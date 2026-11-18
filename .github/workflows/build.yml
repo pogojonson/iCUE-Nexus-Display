@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
+            libxkbcommon-dev libssl-dev
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Test
+        run: cargo test
+
+      - name: Build (release)
+        run: cargo build --release
+
+      - name: Package
+        run: |
+          stage=icue-nexus-display-linux-x86_64
+          mkdir -p "$stage"
+          cp target/release/icue-nexus-display "$stage/"
+          cp -r assets udev README.md "$stage/"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: icue-nexus-display-linux-x86_64
+          path: icue-nexus-display-linux-x86_64/
+          if-no-files-found: error

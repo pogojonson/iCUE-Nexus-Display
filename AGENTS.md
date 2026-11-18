@@ -1,8 +1,9 @@
 # AGENTS.md
 
 Single-crate Rust binary (`icue-nexus-display`) controlling the Corsair iCUE
-Nexus touch display (640×48) over hidraw on Linux. No workspace, no CI, no
-lint/fmt config — `cargo test` is the only automated gate.
+Nexus touch display (640×48) over hidraw on Linux. No workspace, no lint/fmt
+config. CI (`.github/workflows/build.yml`) runs `cargo test` + a release build
+on every push to `main` and uploads a runnable bundle as an artifact.
 
 ## Commands
 
