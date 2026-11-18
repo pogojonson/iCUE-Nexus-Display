@@ -3,7 +3,8 @@
 Single-crate Rust binary (`icue-nexus-display`) controlling the Corsair iCUE
 Nexus touch display (640×48) over hidraw on Linux. No workspace, no lint/fmt
 config. CI (`.github/workflows/build.yml`) runs `cargo test` + a release build
-on every push to `main` and uploads a runnable bundle as an artifact.
+on every push to `main` (uploading a runnable bundle as an artifact); pushing
+a `v*` tag additionally publishes a GitHub Release (see "Releases").
 
 ## Commands
 
@@ -50,6 +51,20 @@ powers both the device frames and the on-screen preview.
   `K100_GBIT0=<offset>` (calibration debug).
 - Assets (icons) resolve relative to the executable; keep `assets/` next to
   the binary when installing.
+
+## Releases
+
+- Pushing a `v*` tag makes CI publish a GitHub Release containing
+  `icue-nexus-display-linux-x86_64.tar.gz` (binary + `assets/` + `udev/` +
+  README). Tag format is `vX.Y.Z`, kept in sync with `version` in `Cargo.toml`:
+
+  ```bash
+  git tag v0.1.0 && git push origin v0.1.0
+  ```
+
+- **When a considerable chunk of work has landed** (new feature, notable bug
+  fix, refactor), explicitly suggest that the maintainer push a new tag so the
+  work gets released — don't tag or release on your own initiative.
 
 ## External references
 
